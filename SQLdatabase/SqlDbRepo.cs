@@ -1,4 +1,6 @@
 using System.Data.SqlClient;
+using Microsoft.AspNetCore.Mvc;
+using SQLdatabase.models;
 
 namespace SQLdatabase;
 
@@ -11,32 +13,77 @@ public class SqlDbRepo
         _connectionString = connectionString;
     }
 
-    public void GetAllProducts(string userInput)
+    public async Task<IActionResult> GetAllProducts()
     {
+        var products = new List<Product>();
+
         using (var connection = new SqlConnection(_connectionString))
         {
-            connection.Open();
+            await connection.OpenAsync();
 
-            //The danger takes place right here
-            var query = $"SELECT * FROM Products WHERE product_name = '{userInput}'";
+            var query = "SELECT * FROM Products";
 
             using (var command = new SqlCommand(query, connection))
             {
-                using (var reader = command.ExecuteReader())
+                using (var reader = await command.ExecuteReaderAsync())
                 {
-                    while (reader.Read())
+                    while (await reader.ReadAsync())
                     {
-                        var productId = reader.GetInt32(0);
-                        var productName = reader.GetString(1);
-                        var productPrice = reader.GetDecimal(2);
-                        var stock = reader.GetInt32(3);
-                        
-                        Console.WriteLine($"Product ID: {productId}, Product Name: {productName}, Product Price: {productPrice}, Stock: {stock}");
+                        var product = new Product
+                        {
+                            ProductId = reader.GetInt32(0),
+                            ProductName = reader.GetString(1),
+                            Price = reader.GetDecimal(2),
+                            Stock = reader.GetInt32(3)
+                        };
+
+                        products.Add(product);
                     }
                 }
             }
 
             connection.Close();
         }
+
+        return new OkObjectResult(products);
+    }
+
+    public async Task<IActionResult> GetProductById(int productId)
+    {
+        Product product = null;
+        
+        using (var connection = new SqlConnection(_connectionString))
+        {
+            connection.Open();
+
+            // Vulnerable to SQL injection
+            var query = $"SELECT * FROM Products WHERE product_id = {productId}";
+
+            using (var command = new SqlCommand(query, connection))
+            {
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        product = new Product
+                        {
+                            ProductId = reader.GetInt32(0),
+                            ProductName = reader.GetString(1),
+                            Price = reader.GetDecimal(2),
+                            Stock = reader.GetInt32(3),
+                        };
+                    }
+                }
+            }
+
+            connection.Close();
+        }
+
+        if (product == null)
+        {
+            return new NotFoundResult();
+        }
+        
+        return new OkObjectResult(product);
     }
 }
