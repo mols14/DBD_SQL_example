@@ -1,0 +1,17 @@
+create DATABASE Store;
+
+use Store;
+
+create TABLE products (
+product_id INT PRIMARY KEY,
+product_name VARCHAR(255),
+price DECIMAL(10, 2),
+stock INT
+);
+
+CREATE TABLE users (
+user_id INT PRIMARY KEY, 
+username VARCHAR(50),
+pass VARCHAR(60),
+email VARCHAR(100)
+);
