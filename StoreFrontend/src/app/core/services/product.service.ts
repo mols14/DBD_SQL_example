@@ -12,7 +12,7 @@ export class ProductService {
 
   constructor() {}
 
-  getProducts(searchTerm: string): Observable<any[]> {
+  getProductsSimulated(searchTerm: string): Observable<any[]> {
     // Enhanced simulated response
     const products = [
       { name: 'Laptop', price: 999, stock: 20 },
@@ -27,7 +27,7 @@ export class ProductService {
     return of(products.filter(product => product.name.toLowerCase().includes(searchTerm.toLowerCase())));
   }
 
-  getProductsHttp(searchTerm: string): Observable<Product[]> {
+  getProducts(searchTerm: string): Observable<Product[]> {
     // HTTP method to fetch filtered data from the backend
     const params = new HttpParams().set('search', searchTerm); // Assuming 'search' is the query param your API uses
     return this._httpClient.get<Product[]>(`${apiEndpoint}`, { params });
