@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -8,8 +8,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.38" />
-      <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+        <!-- This package includes all necessary dependencies for a web application -->
+        <PackageReference Include="Microsoft.AspNetCore.App" />
+
+        <!-- System.Data.SqlClient is fine, though you might consider Microsoft.Data.SqlClient for new projects -->
+        <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
     </ItemGroup>
 
 </Project>

@@ -28,8 +28,8 @@ public class DatabaseController : ControllerBase
     }
     
     [HttpGet]
-    [Route("getProduct")]
-    public async Task<IActionResult> GetProduct(int productId)
+    [Route("getProductById")]
+    public async Task<IActionResult> GetProductById(int productId)
     {
         try
         {
@@ -42,6 +42,35 @@ public class DatabaseController : ControllerBase
         }
     }
     
+    //USED IN FRONTEND
+    [HttpGet]
+    [Route("GetProducts")]
+    public async Task<IActionResult> GetProductsByName([FromQuery] string search = "")
+    {
+        try
+        {
+            var products = await _sqlDbRepo.GetProductsByName(search);
+            return Ok(products);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
     
+    [HttpGet]
+    [Route("GetProductsVulnerable")]
+    public async Task<IActionResult> GetProductsByNameVulnerable([FromQuery] string search = "")
+    {
+        try
+        {
+            var products = await _sqlDbRepo.GetProductsByNameVulnerable(search);
+            return Ok(products);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
     
 }

@@ -16,9 +16,14 @@ export class AppComponent {
 
   searchProducts() {
     if (this.searchTerm) {
-      this.productService.getProducts(this.searchTerm).subscribe(data => {
-        this.products = data;
-      });
+      this.productService.getProducts(this.searchTerm).subscribe(
+        data => {
+          this.products = data;
+        },
+        error => {
+          console.error('Error fetching products:', error);
+        }
+      );
     }
   }
 

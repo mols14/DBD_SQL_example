@@ -30,6 +30,6 @@ export class ProductService {
   getProducts(searchTerm: string): Observable<Product[]> {
     // HTTP method to fetch filtered data from the backend
     const params = new HttpParams().set('search', searchTerm); // Assuming 'search' is the query param your API uses
-    return this._httpClient.get<Product[]>(`${apiEndpoint}`, { params });
+    return this._httpClient.get<Product[]>(`${apiEndpoint.ProductEndPoint.getProducts}`, { params });
   }
 }

@@ -1,8 +1,8 @@
-const StoreUrl = 'http://localhost:8081/api';
+const StoreUrl = 'http://localhost:5000/api';
 
 export const apiEndpoint = {
-  MeasurementEndPoint: {
-    getProducts: `${StoreUrl}/Database/GetProducts`,
+  ProductEndPoint: {
+    getProducts: `${StoreUrl}/Database/GetProductsVulnerable`,
     getUSers: `${StoreUrl}/Database/GetUsers`,
   },
 
