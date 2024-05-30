@@ -29,7 +29,7 @@ These instructions will get you a copy of the project up and running on your loc
 2. **Set up the backend (C# .NET):**
    Navigate to the backend directory and build the .NET solution:
    ```bash
-   cd backend
+   cd SQLdatabase
    dotnet restore
    dotnet build
    ```
@@ -44,7 +44,7 @@ These instructions will get you a copy of the project up and running on your loc
 4. **Database setup:**
    Ensure your local MSSQL database is running. You can use Docker to run a MSSQL container:
    ```bash
-   docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=yourStrong(!)Password" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
+   docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=yourStrong(!)Password" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest
    ```
    Update the connection string in your application settings.
 
@@ -52,12 +52,14 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. **Start the backend:**
    ```bash
+   cd SQLdatabase
    dotnet run
    ```
 
 2. **Start the frontend:**
    Open a new terminal window and run:
    ```bash
+   cd Storefrontend
    ng serve
    ```
    Navigate to `http://localhost:4200/` to view the application.
