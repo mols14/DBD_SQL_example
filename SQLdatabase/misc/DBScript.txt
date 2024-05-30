@@ -5,13 +5,13 @@ use Store;
 create TABLE products (
 product_id INT PRIMARY KEY,
 product_name VARCHAR(255),
-price DECIMAL(10, 2),
-stock INT
+price VARCHAR(255),
+stock VARCHAR(255)
 );
 
 CREATE TABLE users (
 user_id INT PRIMARY KEY, 
-username VARCHAR(50),
+username VARCHAR(60),
 pass VARCHAR(60),
 email VARCHAR(100),
 role VARCHAR(60)
@@ -24,8 +24,8 @@ INSERT INTO users (user_id, username, pass, email, role) VALUES
 (4, 'alicejones', 'password101', 'alice.jones@example.com', 'user');
 
 INSERT INTO products (product_id, product_name, price, stock) VALUES
-(1, 'Laptop', 999.99, 10),
-(2, 'Smartphone', 499.99, 20),
-(3, 'Headphones', 89.99, 30),
-(4, 'Keyboard', 49.99, 15),
-(5, 'Mouse', 25.99, 25);
+(1, 'Laptop', '999.99', '10'),
+(2, 'Smartphone', '499.99', '20'),
+(3, 'Headphones', '89.99', '30'),
+(4, 'Keyboard', '49.99', '15'),
+(5, 'Mouse', '25.99', '25');
