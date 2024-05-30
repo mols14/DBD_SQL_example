@@ -1,6 +1,9 @@
+// Creates the local database and tables for the Store application
 create DATABASE Store;
+GO
 
 use Store;
+GO
 
 create TABLE products (
 product_id INT PRIMARY KEY,
@@ -8,6 +11,7 @@ product_name VARCHAR(255),
 price VARCHAR(255),
 stock VARCHAR(255)
 );
+GO
 
 CREATE TABLE users (
 user_id INT PRIMARY KEY, 
@@ -16,13 +20,16 @@ pass VARCHAR(60),
 email VARCHAR(100),
 role VARCHAR(60)
 );
+GO
 
+// Inserts data into the tables
 INSERT INTO users (user_id, username, pass, email, role) VALUES
 (1, 'johndoe', 'password123', 'john.doe@example.com', 'user'),
 (2, 'janedoe', 'password456', 'jane.doe@example.com', 'user'),
 (3, 'mikesmith', 'password789', 'mike.smith@example.com', 'admin'),
 (4, 'alicejones', 'password101', 'alice.jones@example.com', 'user');
 
+// Inserts data into the products table
 INSERT INTO products (product_id, product_name, price, stock) VALUES
 (1, 'Laptop', '999.99', '10'),
 (2, 'Smartphone', '499.99', '20'),
