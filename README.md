@@ -29,7 +29,7 @@ These instructions will get you a copy of the project up and running on your loc
 2. **Set up the backend (C# .NET):**
    Navigate to the backend directory and build the .NET solution:
    ```bash
-   cd backend
+   cd SQLdatabase
    dotnet restore
    dotnet build
    ```
@@ -52,12 +52,14 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. **Start the backend:**
    ```bash
+   cd SQLdatabase
    dotnet run
    ```
 
 2. **Start the frontend:**
    Open a new terminal window and run:
    ```bash
+   cd Storefrontend
    ng serve
    ```
    Navigate to `http://localhost:4200/` to view the application.
